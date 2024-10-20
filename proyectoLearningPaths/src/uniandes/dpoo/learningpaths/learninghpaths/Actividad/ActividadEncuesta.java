@@ -1,4 +1,4 @@
-package uniandes.dpoo.modelo.actividades;
+package uniandes.dpoo.learninghpaths.Actividad;
 
 import java.util.ArrayList;
 import java.util.List;
