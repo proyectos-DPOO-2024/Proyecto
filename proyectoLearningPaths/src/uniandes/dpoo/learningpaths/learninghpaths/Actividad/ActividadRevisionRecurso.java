@@ -1,4 +1,4 @@
-package uniandes.dpoo.learninghpaths.Actividad;
+package uniandes.dpoo.learningpaths.learninghpaths.Actividad;
 
 public class ActividadRevisionRecurso extends Actividad {
 	private String tipoRecurso;
