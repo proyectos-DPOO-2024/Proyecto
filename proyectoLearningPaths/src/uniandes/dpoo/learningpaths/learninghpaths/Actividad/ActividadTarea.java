@@ -1,4 +1,4 @@
-package uniandes.dpoo.modelo.actividades;
+package uniandes.dpoo.learninghpaths.Actividad;
 
 public class ActividadTarea extends Actividad{
 	private boolean enviada;
