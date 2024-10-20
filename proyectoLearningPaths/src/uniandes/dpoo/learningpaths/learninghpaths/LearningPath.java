@@ -15,7 +15,7 @@ public class LearningPath {
 	public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating, List<Actividad> actividades) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
-		this.nivelDificultad = nivelDificultad;
+		this.nivelDificultad = dificultad;
 		this.duracion = duracion;
 		this.rating = rating;
 		this.actividades = actividades;
