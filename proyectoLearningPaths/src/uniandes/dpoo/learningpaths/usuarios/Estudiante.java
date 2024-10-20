@@ -39,7 +39,7 @@ public class Estudiante extends Usuario {
 	public void verProgreso(LearningPath path) {
 	    if (learningPathsInscritos.contains(path)) {
 	        // Lógica para mostrar el progreso del estudiante en el Learning Path
-	        System.out.println("Progreso: " + path.getProgreso(this));
+	        System.out.println("Progreso: " + path.getProgreso());
 	    } else {
 	        System.out.println("No estás inscrito en este Learning Path.");
 	    }
@@ -48,7 +48,7 @@ public class Estudiante extends Usuario {
 	public void comenzarActividad(LearningPath path, Actividad actividad) {
 	    if (learningPathsInscritos.contains(path)) {
 	        // Lógica para permitir al estudiante comenzar una actividad
-	        actividad.iniciar();
+	        actividad.realizar();
 	    } else {
 	        System.out.println("Debes estar inscrito en el Learning Path para comenzar una actividad.");
 	    }

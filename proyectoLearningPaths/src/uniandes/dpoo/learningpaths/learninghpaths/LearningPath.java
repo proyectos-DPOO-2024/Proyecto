@@ -13,14 +13,16 @@ public class LearningPath {
 	private int duracion;
 	private double rating;
 	private List<Actividad> actividades;
+	private double progreso;
 	
-	public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating, List<Actividad> actividades) {
+	public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating, List<Actividad> actividades,double progreso) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.nivelDificultad = dificultad;
 		this.duracion = duracion;
 		this.rating = rating;
 		this.actividades = actividades;
+		this.progreso = progreso;
 		
 		
 	}
@@ -73,7 +75,10 @@ public class LearningPath {
 		this.actividades = actividades;
 	}
 	
-	
+	public double getProgreso() {
+		return progreso;
+	}
+
 	public double calcularProgreo() {
 		int completadas = 0;
 		for (Actividad actividad : actividades) {
@@ -81,7 +86,9 @@ public class LearningPath {
 				completadas++;
 			}
 		}
-		return (double) completadas / actividades.size() * 100; 
+		this.progreso = (double) completadas / actividades.size() * 100; 
+		
+		return progreso;
 		
 	}
 	

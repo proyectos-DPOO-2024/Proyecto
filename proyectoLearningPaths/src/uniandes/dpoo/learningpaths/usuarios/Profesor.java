@@ -42,8 +42,7 @@ public class Profesor extends Usuario {
 	}
 
 	public Actividad clonarActividad(Actividad actividadOriginal) {
-	    Actividad copia = new Actividad(actividadOriginal); // Constructor de copia
-	    return copia;
+	    return actividadOriginal.clonar();
 	}
 
 }
