@@ -14,6 +14,7 @@ public abstract class Actividad {
 	protected boolean completada;
 	protected LocalDateTime fechaCreacion;
 	protected LocalDateTime fechaModificacion;
+	private List<Reseña> reseñas;
     
     public Actividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion) {
         this.titulo = titulo;
@@ -25,6 +26,7 @@ public abstract class Actividad {
         this.completada = false;
         this.fechaCreacion = LocalDateTime.now();
         this.fechaModificacion = LocalDateTime.now();
+        this.reseñas = new ArrayList<Reseña>();
     }
     
     public String getTitulo() {
@@ -62,10 +64,21 @@ public abstract class Actividad {
     public LocalDateTime getFechaModificacion() {
     	return fechaModificacion;
     }
+
     
-    public void marcarCompletada() {
+    public List<Reseña> getReseñas() {
+		return reseñas;
+	}
+    
+    public void agregarReseña(Reseña reseña) {
+    	this.reseñas.add(reseña);
+    }
+    
+
+	public void marcarCompletada() {
     	this.completada = true;
     }
+	
     public abstract Actividad clonar();
     
     public void editarActividad(String nuevoTitulo, String nuevaDescripcion, String nuevoObjetivo, String nuevoNivelDificultad, int nuevaDuracion) {

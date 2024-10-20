@@ -3,20 +3,23 @@ package uniandes.dpoo.learningpaths.usuarios;
 import java.util.LinkedList;
 import java.util.List;
 
+import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+
 public class Estudiante extends Usuario {
 
-	private List<String> learningPathsInscritos;
+	private List<LearningPath> learningPathsInscritos;
 
 	public Estudiante(String usuarioID, String nombreUsuario, String nombre, String apellido, String contraseña) {
 		super(usuarioID, nombreUsuario, nombre, apellido, contraseña);
-		learningPathsInscritos = new LinkedList<String>();
+		learningPathsInscritos = new LinkedList<LearningPath>();
 	}
 
-	public List<String> getLearningPathsInscritos() {
+	public List<LearningPath> getLearningPathsInscritos() {
 		return learningPathsInscritos;
 	}
 
-	public void setLearningPathsInscritos(List<String> learningPathsInscritos) {
+	public void setLearningPathsInscritos(List<LearningPath> learningPathsInscritos) {
 		this.learningPathsInscritos = learningPathsInscritos;
 	}
 	

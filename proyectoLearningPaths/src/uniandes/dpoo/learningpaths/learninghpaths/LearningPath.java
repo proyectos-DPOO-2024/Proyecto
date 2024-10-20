@@ -3,6 +3,8 @@ package uniandes.dpoo.learningpaths.learninghpaths;
 
 import java.util.List;
 
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+
 public class LearningPath {
 	
 	private String titulo;
@@ -75,7 +77,7 @@ public class LearningPath {
 	public double calcularProgreo() {
 		int completadas = 0;
 		for (Actividad actividad : actividades) {
-			if (actividad.isCompletada()) {
+			if (actividad.getCompletada()) {
 				completadas++;
 			}
 		}

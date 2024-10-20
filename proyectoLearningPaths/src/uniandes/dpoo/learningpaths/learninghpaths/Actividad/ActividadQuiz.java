@@ -3,7 +3,7 @@ package uniandes.dpoo.learningpaths.learninghpaths.Actividad;
 import java.util.ArrayList;
 import java.util.List;
 
-import uniandes.dpoo.model.Pregunta;
+
 
 public class ActividadQuiz extends Actividad{
 	private List<Pregunta> listaPreguntas;

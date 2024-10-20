@@ -3,7 +3,7 @@ package uniandes.dpoo.learningpaths.learninghpaths.Actividad;
 import java.util.ArrayList;
 import java.util.List;
 
-import uniandes.dpoo.model.Pregunta;
+
 
 public class ActividadEvaluacion extends Actividad{
 	private boolean enviada;

@@ -3,20 +3,24 @@ package uniandes.dpoo.learningpaths.usuarios;
 import java.util.LinkedList;
 import java.util.List;
 
+import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
+
 public class Profesor extends Usuario {
 
-	private List<String> learnignPathsCreados;
+	private List<LearningPath> learnignPathsCreados;
 
 	public Profesor(String usuarioID, String nombreUsuario, String nombre, String apellido, String contraseña) {
 		super(usuarioID, nombreUsuario, nombre, apellido, contraseña);
-		learnignPathsCreados = new LinkedList<String>();
+		learnignPathsCreados = new LinkedList<LearningPath>();
 	}
 
-	public List<String> getLearnignPathsCreados() {
+	public List<LearningPath> getLearnignPathsCreados() {
 		return learnignPathsCreados;
 	}
 
-	public void setLearnignPathsCreados(List<String> learnignPathsCreados) {
+	public void setLearnignPathsCreados(List<LearningPath> learnignPathsCreados) {
 		this.learnignPathsCreados = learnignPathsCreados;
 	}
 	
@@ -33,7 +37,7 @@ public class Profesor extends Usuario {
 	public void verReseñas(Actividad actividad) {
 	    List<Reseña> reseñas = actividad.getReseñas();
 	    for (Reseña reseña : reseñas) {
-	        System.out.println(reseña.getTexto());
+	        System.out.println(reseña.getReseñaText());
 	    }
 	}
 
