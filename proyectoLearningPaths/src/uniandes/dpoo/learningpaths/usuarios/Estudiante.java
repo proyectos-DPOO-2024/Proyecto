@@ -5,6 +5,7 @@ import java.util.List;
 
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
 
 public class Estudiante extends Usuario {
 
@@ -51,6 +52,16 @@ public class Estudiante extends Usuario {
 	        actividad.realizar();
 	    } else {
 	        System.out.println("Debes estar inscrito en el Learning Path para comenzar una actividad.");
+	    }
+	}
+
+	public void crearReseña(Actividad actividad, String texto, int calificacion) {
+	    if (actividad != null) {
+	        Reseña nuevaReseña = new Reseña(texto, calificacion);
+	        actividad.agregarReseña(nuevaReseña); // Agregar la reseña a la actividad
+	        System.out.println("Reseña creada con éxito para la actividad: " + actividad.getTitulo());
+	    } else {
+	        System.out.println("Actividad no válida.");
 	    }
 	}
 

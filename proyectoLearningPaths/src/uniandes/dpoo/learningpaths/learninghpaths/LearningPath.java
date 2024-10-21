@@ -7,6 +7,7 @@ import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
 
 public class LearningPath {
 	
+	private String learningpathID;
 	private String titulo;
 	private String descripcion;
 	private String nivelDificultad;
@@ -15,7 +16,8 @@ public class LearningPath {
 	private List<Actividad> actividades;
 	private double progreso;
 	
-	public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating, List<Actividad> actividades,double progreso) {
+	public LearningPath(String learningpathID, String titulo, String descripcion, int duracion, String dificultad, double rating, List<Actividad> actividades,double progreso) {
+		this.learningpathID = learningpathID;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.nivelDificultad = dificultad;
