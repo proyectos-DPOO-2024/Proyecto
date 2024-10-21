@@ -1,26 +1,20 @@
 package uniandes.dpoo.learningpaths.usuarios;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UsuarioManager {
-    private List<Usuario> usuarios;
-    private int idCounter;
+    private int contadorID = 0; // Contador para generar IDs únicos
 
-    public UsuarioManager() {
-        usuarios = new ArrayList<>();
-        idCounter = 1; // Comienza en 1
+    public String generarID() {
+        contadorID++;
+        return String.valueOf(contadorID); // Devuelve el ID como String
     }
 
-    public String generarUsuarioID() {
-        return String.valueOf(idCounter++); // Incrementa el contador y devuelve el nuevo ID
+    public Estudiante crearEstudiante(String nombreUsuario, String nombre, String apellido, String contraseña) {
+        String usuarioID = generarID();
+        return new Estudiante(usuarioID, nombreUsuario, nombre, apellido, contraseña);
     }
 
-    public void agregarUsuario(Usuario usuario) {
-        usuarios.add(usuario);
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public Profesor crearProfesor(String nombreUsuario, String nombre, String apellido, String contraseña) {
+        String usuarioID = generarID();
+        return new Profesor(usuarioID, nombreUsuario, nombre, apellido, contraseña);
     }
 }
