@@ -45,8 +45,5 @@ public class Profesor extends Usuario {
 		learningpath.crearActividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion);
 	}
 
-	public Actividad clonarActividad(Actividad actividadOriginal) {
-	    return actividadOriginal.clonar();
-	}
 
 }
