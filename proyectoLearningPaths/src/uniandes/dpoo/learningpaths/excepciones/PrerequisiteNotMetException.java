@@ -1,4 +1,4 @@
-package uniandes.dpoo.excepciones;
+package uniandes.dpoo.learningpaths.excepciones;
 
 public class PrerequisiteNotMetException extends Exception{
 	public PrerequisiteNotMetException(String message) {
