@@ -5,6 +5,7 @@ import java.util.List;
 
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.ActividadTarea;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
 
 public class Profesor extends Usuario {
@@ -41,9 +42,13 @@ public class Profesor extends Usuario {
 	    }
 	}
 
-	public void crearActividad(LearningPath learningpath, String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion) {
-		learningpath.crearActividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion);
+	public void calificarTarea(ActividadTarea tarea) {
+		boolean enviada = tarea.getEnviada();
+		tarea.calificar(enviada);
 	}
 
-
+	public void calificarExamen(ActividadExamen examen) {
+		boolean enviado = examen.getEnviada();
+		examen.calificar(enviado);
+	}
 }
