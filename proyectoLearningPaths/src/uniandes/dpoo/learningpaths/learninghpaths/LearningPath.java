@@ -33,6 +33,15 @@ public class LearningPath {
 		return titulo;
 	}
 
+	
+	public String getLearningpathID() {
+		return learningpathID;
+	}
+
+	public void setLearningpathID(String learningpathID) {
+		this.learningpathID = learningpathID;
+	}
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}

@@ -1,4 +1,4 @@
-package uniandes.dpoo.learningpaths.Consola;
+package uniandes.dpoo.learningpaths.consola;
 
 import java.util.ArrayList;
 import java.util.List;
