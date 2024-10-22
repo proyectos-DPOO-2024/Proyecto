@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,17 +35,35 @@ public class PersistenciaUsuarios implements IPersistenciaUsuarios {
     }
 
     @Override
-    public void salvarUsuario(String archivo, Usuario usuario) throws IOException {
+    public void guardarUsuarios(String archivo, List<Usuario> usuarios) throws IOException {
         JSONObject jobject = new JSONObject();
+        JSONArray jUsuarios = new JSONArray();
 
-        // Salvar la información de los usuarios
-        salvarUsuarios(usuario, jobject);
+        for (Usuario usuario : usuarios) {
+            JSONObject jUsuario = new JSONObject();
+            jUsuario.put(USUARIO_ID, usuario.getUsuarioID());
+            jUsuario.put(NOMBRE_USUARIO, usuario.getNombreUsuario());
+            jUsuario.put(NOMBRE, usuario.getNombre());
+            jUsuario.put(APELLIDO, usuario.getApellido());
+            jUsuario.put(CONTRASENA, usuario.getContraseña());
+            
+            if (usuario instanceof Estudiante) {
+                jUsuario.put(TIPO_USUARIO, ESTUDIANTE);
+            } else if (usuario instanceof Profesor) {
+                jUsuario.put(TIPO_USUARIO, PROFESOR);
+            }
+
+            jUsuarios.put(jUsuario);
+        }
+        
+        jobject.put("usuarios", jUsuarios);
 
         // Escribir la estructura JSON en un archivo
         PrintWriter pw = new PrintWriter(archivo);
         jobject.write(pw, 2, 0);
         pw.close();
     }
+
 
     private void cargarUsuarios(Usuario usuario, JSONArray jUsuarios) throws InformacionInconsistenteException {
         int numUsuarios = jUsuarios.length();

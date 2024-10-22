@@ -6,8 +6,8 @@ import java.util.List;
 public class ActividadEncuesta extends Actividad{
 	private List<String> comentarios;
 	
-	public ActividadEncuesta(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion) {
-        super(titulo, descripcion, objetivo, nivelDificultad, duracion);
+	public ActividadEncuesta(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, Float calificacion) {
+        super(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion);
         this.comentarios = new ArrayList<>();
 	}
 	
@@ -21,6 +21,12 @@ public class ActividadEncuesta extends Actividad{
 	}
 	
 	public Actividad clonar() {
-		return new ActividadEncuesta(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion());
+		return new ActividadEncuesta(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion(), getCalificacion());
+	}
+
+	@Override
+	public void clificar() {
+		// TODO Auto-generated method stub
+		
 	}
 }

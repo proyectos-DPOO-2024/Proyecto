@@ -50,8 +50,9 @@ public class PersistenciaActividades implements IPersistenciaActividades {
         String nivelDificultad = jsonActividad.getString("nivelDificultad");
         int duracion = jsonActividad.getInt("duracion");
         double calificacionMinima = jsonActividad.getDouble("calificacionMinima");
+        Float calificacion =jsonActividad.getFloat("calificacionMinima");
 
-        ActividadQuiz actividadQuiz = new ActividadQuiz(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacionMinima);
+        ActividadQuiz actividadQuiz = new ActividadQuiz(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacionMinima, calificacion);
 
         JSONArray preguntasJson = jsonActividad.getJSONArray("preguntas");
         for (int j = 0; j < preguntasJson.length(); j++) {

@@ -5,6 +5,8 @@ import java.util.List;
 import java.time.LocalDateTime;
 
 public abstract class Actividad {
+	
+	private Float calificacion;
 	protected String titulo;
 	protected String descripcion;
 	protected String objetivo;
@@ -16,7 +18,7 @@ public abstract class Actividad {
 	protected LocalDateTime fechaModificacion;
 	private List<Reseña> reseñas;
     
-    public Actividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion) {
+    public Actividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, Float calificacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.objetivo = objetivo;
@@ -73,6 +75,11 @@ public abstract class Actividad {
     public String getNivelDificultad() {
 		return nivelDificultad;
 	}
+    
+
+	public Float getCalificacion() {
+		return calificacion;
+	}
 
 	public void setNivelDificultad(String nivelDificultad) {
 		this.nivelDificultad = nivelDificultad;
@@ -122,6 +129,8 @@ public abstract class Actividad {
 	public void marcarCompletada() {
     	this.completada = true;
     }
+	
+	public abstract void clificar();
 	
     public abstract Actividad clonar();
     

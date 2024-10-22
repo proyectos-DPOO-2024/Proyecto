@@ -9,8 +9,8 @@ public class ActividadQuiz extends Actividad{
 	private List<Pregunta> listaPreguntas;
 	private double calificacionMinima;
 	
-	public ActividadQuiz(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, double calificacionMinima) {
-		super(titulo, descripcion, objetivo, nivelDificultad, duracion);
+	public ActividadQuiz(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, double calificacionMinima, Float calificacion) {
+		super(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion );
 		this.listaPreguntas = new ArrayList<>();
 		this.calificacionMinima = calificacionMinima;
 	}
@@ -53,6 +53,12 @@ public class ActividadQuiz extends Actividad{
 	}
 	
 	public Actividad clonar() {
-		return new ActividadQuiz(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion(), calificacionMinima);
+		return new ActividadQuiz(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion(), calificacionMinima, getCalificacion());
+	}
+
+	@Override
+	public void clificar() {
+		// TODO Auto-generated method stub
+		
 	}
 }

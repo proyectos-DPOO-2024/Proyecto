@@ -5,8 +5,8 @@ public class ActividadTarea extends Actividad{
     private boolean calificada;
     private boolean exitosa;
     
-    public ActividadTarea(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion) {
-        super(titulo, descripcion, objetivo, nivelDificultad, duracion);
+    public ActividadTarea(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, Float calificacion) {
+        super(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion);
         this.enviada = false;
         this.calificada = false;
         this.exitosa = false;
@@ -48,6 +48,12 @@ public class ActividadTarea extends Actividad{
     }
     
     public Actividad clonar() {
-    	return new ActividadTarea(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion());
+    	return new ActividadTarea(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion(), getCalificacion());
     }
+
+	@Override
+	public void clificar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

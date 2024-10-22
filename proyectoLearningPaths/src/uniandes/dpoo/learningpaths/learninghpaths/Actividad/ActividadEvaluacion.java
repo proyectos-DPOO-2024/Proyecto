@@ -12,8 +12,8 @@ public class ActividadEvaluacion extends Actividad{
     private List<Pregunta> listaPreguntas;
     private double calificacionMinima;
     
-    public ActividadEvaluacion(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, double calificacionMinima) {
-        super(titulo, descripcion, objetivo, nivelDificultad, duracion);
+    public ActividadEvaluacion(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, double calificacionMinima, Float calificacion) {
+        super(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion);
         this.enviada = false;
         this.calificada = false;
         this.exitosa = false;
@@ -78,7 +78,13 @@ public class ActividadEvaluacion extends Actividad{
     }
 	
 	public Actividad clonar() {
-		return new ActividadEvaluacion(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion(), calificacionMinima);
+		return new ActividadEvaluacion(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion(), calificacionMinima, getCalificacion());
+	}
+
+	@Override
+	public void clificar() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
