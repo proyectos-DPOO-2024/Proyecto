@@ -49,8 +49,8 @@ public class LearningPath {
 		return nivelDificultad;
 	}
 
-	public void setNivelDificultad(String nivelDificultad) {
-		this.nivelDificultad = nivelDificultad;
+	public void setNivelDificultad(String i) {
+		this.nivelDificultad = i;
 	}
 
 	public int getDuracion() {

@@ -59,7 +59,7 @@ public class ActividadEvaluacion extends Actividad{
 	}
 	
 	public void participarEvaluacion() {
-		for (int i = 0; i <= listaPreguntas.size(); i++) {
+		for (int i = 0; i < listaPreguntas.size(); i++) {
 			System.out.println(listaPreguntas.get(i).getEnunciado());
 			System.out.println(listaPreguntas.get(i).getOpciones());
 		}

@@ -70,7 +70,51 @@ public abstract class Actividad {
 		return reseñas;
 	}
     
-    public void agregarReseña(Reseña reseña) {
+    public String getNivelDificultad() {
+		return nivelDificultad;
+	}
+
+	public void setNivelDificultad(String nivelDificultad) {
+		this.nivelDificultad = nivelDificultad;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setObjetivo(String objetivo) {
+		this.objetivo = objetivo;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
+	public void setActividadesPrevias(List<Actividad> actividadesPrevias) {
+		this.actividadesPrevias = actividadesPrevias;
+	}
+
+	public void setCompletada(boolean completada) {
+		this.completada = completada;
+	}
+
+	public void setFechaCreacion(LocalDateTime fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public void setFechaModificacion(LocalDateTime fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
+
+	public void setReseñas(List<Reseña> reseñas) {
+		this.reseñas = reseñas;
+	}
+
+	public void agregarReseña(Reseña reseña) {
     	this.reseñas.add(reseña);
     }
     

@@ -2,6 +2,9 @@ package uniandes.dpoo.learningpath.test;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import uniandes.dpoo.learningpaths.usuarios.Estudiante;
+import uniandes.dpoo.learningpaths.usuarios.Usuario;
+
 class UsuarioTest {
 
     @Test

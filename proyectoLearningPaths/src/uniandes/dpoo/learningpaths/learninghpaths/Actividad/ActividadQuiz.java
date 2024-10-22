@@ -23,6 +23,10 @@ public class ActividadQuiz extends Actividad{
 		return calificacionMinima;
 	}
 	
+	public int getNumeroPreguntas() {
+		return this.listaPreguntas.size();
+	}
+	
 	public void agregarPregunta(Pregunta pregunta) {
 		listaPreguntas.add(pregunta);
 	}
@@ -41,7 +45,7 @@ public class ActividadQuiz extends Actividad{
     }
 	
 	public void participarQuiz() {
-		for (int i = 0; i <= listaPreguntas.size(); i++) {
+		for (int i = 0; i < listaPreguntas.size(); i++) {
 			System.out.println(listaPreguntas.get(i).getEnunciado());
 			System.out.println(listaPreguntas.get(i).getOpciones());
 		}
