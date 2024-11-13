@@ -132,5 +132,9 @@ public abstract class Actividad {
 	public void setFechaModificacion(LocalDateTime fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
+
+	public int getActividadID() {
+		return actividadID;
+	}
 }
 

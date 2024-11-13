@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
 
 public class LearningPath {
     private static int contadorID = 0;
@@ -14,7 +15,7 @@ public class LearningPath {
     private String nivelDificultad;
     private int duracion;
     private double rating;
-    private List<String> resenias;
+    private List<Reseña> resenias;
     private List<Actividad> actividades;
 
     public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating) {
@@ -24,8 +25,8 @@ public class LearningPath {
         this.nivelDificultad = dificultad;
         this.duracion = duracion;
         this.rating = rating;
-        this.resenias = new ArrayList<>();
-        this.actividades = new ArrayList<>();
+        this.resenias = new ArrayList<Reseña>();
+        this.actividades = new ArrayList<Actividad>();
     }
 
     public String getTitulo() {
@@ -76,11 +77,11 @@ public class LearningPath {
         this.rating = rating;
     }
 
-    public List<String> getResenias() {
+    public List<Reseña> getResenias() {
         return resenias;
     }
 
-    public void agregarResenia(String resenia) {
+    public void agregarResenia(Reseña resenia) {
         this.resenias.add(resenia);
     }
 
@@ -89,8 +90,10 @@ public class LearningPath {
             System.out.println("No hay reseñas.");
         } else {
             System.out.println("Reseñas:");
-            for (String resenia : resenias) {
-                System.out.println("- " + resenia);
+            for (Reseña resenia : resenias) {
+                System.out.println("- " + resenia.getCalificacion());
+                System.out.println("- " + resenia.getReseñaText());
+                
             }
         }
     }

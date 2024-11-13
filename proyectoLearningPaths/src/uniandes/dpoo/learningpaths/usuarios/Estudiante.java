@@ -11,8 +11,8 @@ import uniandes.dpoo.learningpaths.persistencias.PersistenciaLearningPaths;
 
 public class Estudiante extends Usuario {
 
-    public Estudiante(String usuarioID, String nombreUsuario, String nombre, String apellido, String contraseña) {
-        super(usuarioID, nombreUsuario, nombre, apellido, contraseña, "Estudiante");
+    public Estudiante( String nombreUsuario, String nombre, String apellido, String contraseña) {
+        super(nombreUsuario, nombre, apellido, contraseña, "Estudiante");
     }
 
     public void crearResenia(Scanner scanner, PersistenciaLearningPaths persistenciaLearningPaths) {
