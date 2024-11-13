@@ -6,7 +6,8 @@ import java.util.List;
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
 public abstract class Usuario {
 
-    private String usuarioID;
+	private static int contadorID;
+    private int usuarioID;
     private String nombreUsuario;
     private String nombre;
     private String apellido;
@@ -15,8 +16,8 @@ public abstract class Usuario {
     private List<LearningPath> learningPathsInscritos;
     private List<Boolean> learningPathsCompletados;
 
-    public Usuario(String usuarioID, String nombreUsuario, String nombre, String apellido, String contraseña, String tipoUsuario) {
-        this.usuarioID = usuarioID;
+    public Usuario(String nombreUsuario, String nombre, String apellido, String contraseña, String tipoUsuario) {
+        this.usuarioID = contadorID++;
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -26,13 +27,10 @@ public abstract class Usuario {
         this.learningPathsCompletados = new ArrayList<>();
     }
 
-    public String getUsuarioID() {
+    public int getUsuarioID() {
         return usuarioID;
     }
 
-    public void setUsuarioID(String usuarioID) {
-        this.usuarioID = usuarioID;
-    }
 
     public String getNombreUsuario() {
         return nombreUsuario;

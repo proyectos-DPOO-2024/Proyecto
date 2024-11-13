@@ -46,8 +46,6 @@ public class Consola {
         System.out.print("Tipo de usuario (Estudiante/Profesor): ");
         String tipoUsuario = scanner.nextLine().toLowerCase();
 
-        System.out.print("Usuario ID: ");
-        String usuarioID = scanner.nextLine();
         System.out.print("Nombre de usuario: ");
         String nombreUsuario = scanner.nextLine();
         System.out.print("Nombre: ");
@@ -58,11 +56,11 @@ public class Consola {
         String contraseña = scanner.nextLine();
 
         if (tipoUsuario.equals("estudiante")) {
-            Estudiante estudiante = new Estudiante(usuarioID, nombreUsuario, nombre, apellido, contraseña);
+            Estudiante estudiante = new Estudiante(nombreUsuario, nombre, apellido, contraseña);
             persistencia.guardarUsuario(estudiante);
             System.out.println("Estudiante creado y guardado exitosamente.");
         } else if (tipoUsuario.equals("profesor")) {
-            Profesor profesor = new Profesor(usuarioID, nombreUsuario, nombre, apellido, contraseña);
+            Profesor profesor = new Profesor(nombreUsuario, nombre, apellido, contraseña);
             persistencia.guardarUsuario(profesor);
             System.out.println("Profesor creado y guardado exitosamente.");
         } else {
@@ -130,17 +128,23 @@ public class Consola {
             System.out.println("1. Crear Learning Path");
             System.out.println("2. Ver Learning Paths");
             System.out.println("3. Crear Actividad");
-            System.out.println("4. Volver al menú principal");
+            System.out.println("4. Ver catalogo de actividades");
+            System.out.println("5. Agregar actividad a learningpath");
+            System.out.println("6. Volver al menú principal");
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
             if (opcion == 1) {
-                profesor.crearLearningPath(scanner, persistenciaLearningPaths);
+                ConsolaProfesor.crearLearningPath(profesor, scanner, persistenciaLearningPaths);
             } else if (opcion == 2) {
-                profesor.verLearningPaths(persistenciaLearningPaths);
+            	ConsolaProfesor.verLearningPaths(persistenciaLearningPaths);
             } else if (opcion == 3) {
-                profesor.crearActividad(scanner, persistenciaLearningPaths, persistenciaActividades);
-            } else if (opcion == 4) {
+            	ConsolaProfesor.crearNuevaActividad(scanner, profesor);
+            }else if (opcion == 4) {
+            	ConsolaActividades.mostrarCatalogo();
+        	}else if (opcion == 5) {
+            	ConsolaProfesor.agregarActividadALearningPath(profesor, scanner);
+            }else if (opcion == 6) {
                 break;
             }
         }
