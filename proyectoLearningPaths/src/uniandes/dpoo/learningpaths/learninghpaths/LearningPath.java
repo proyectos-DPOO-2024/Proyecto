@@ -1,31 +1,31 @@
 package uniandes.dpoo.learningpaths.learninghpaths;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.CatalogoActividades;
 
 public class LearningPath {
 	
-	private String learningpathID;
+	private static int contadorID = 0;
+	private int learningpathID;
 	private String titulo;
 	private String descripcion;
 	private String nivelDificultad;
 	private int duracion;
 	private double rating;
 	private List<Actividad> actividades;
-	private double progreso;
 	
-	public LearningPath(String learningpathID, String titulo, String descripcion, int duracion, String dificultad, double rating, List<Actividad> actividades,double progreso) {
-		this.learningpathID = learningpathID;
+	public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating) {
+		this.learningpathID = contadorID++;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.nivelDificultad = dificultad;
 		this.duracion = duracion;
 		this.rating = rating;
-		this.actividades = actividades;
-		this.progreso = progreso;
-		
+		this.actividades = new ArrayList<Actividad>();
 		
 	}
 
@@ -34,11 +34,11 @@ public class LearningPath {
 	}
 
 	
-	public String getLearningpathID() {
+	public int getLearningpathID() {
 		return learningpathID;
 	}
 
-	public void setLearningpathID(String learningpathID) {
+	public void setLearningpathID(int learningpathID) {
 		this.learningpathID = learningpathID;
 	}
 
@@ -86,23 +86,12 @@ public class LearningPath {
 		this.actividades = actividades;
 	}
 	
-	public double getProgreso() {
-		return progreso;
-	}
 
-	public double calcularProgreo() {
-		int completadas = 0;
-		for (Actividad actividad : actividades) {
-			if (actividad.getCompletada()) {
-				completadas++;
-			}
-		}
-		this.progreso = (double) completadas / actividades.size() * 100; 
-		
-		return progreso;
-		
-	}
 	
+	public void agregarActividad (Actividad actividad) {
+		
+		this.actividades.add(actividad);
+	}
 	
 	
 	

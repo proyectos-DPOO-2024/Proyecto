@@ -7,9 +7,6 @@ public class ActividadTarea extends Actividad{
     
     public ActividadTarea(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, Float calificacion) {
         super(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion);
-        this.enviada = false;
-        this.calificada = false;
-        this.exitosa = false;
     }
     
     public boolean getEnviada() {

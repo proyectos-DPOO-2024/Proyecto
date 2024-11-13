@@ -18,12 +18,10 @@ public class Consola {
         boolean exit = false;
 
         while (!exit) {
-            System.out.println("Bienvenido a la Consola");
-            System.out.println("1. Crear Usuario");
-            System.out.println("2. Crear LearningPath");
-            System.out.println("3. Asignar LearningPath a Usuario");
-            System.out.println("4. Mostrar LearningPaths de Usuario");
-            System.out.println("5. Salir");
+            System.out.println("Bienvenido");
+            System.out.println("1. Iniciar sesión");
+            System.out.println("2. registrarce");
+
             System.out.print("Seleccione una opción: ");
 
             int option = scanner.nextInt();

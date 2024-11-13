@@ -6,32 +6,15 @@ import java.util.List;
 
 
 public class ActividadEvaluacion extends Actividad{
-	private boolean enviada;
-    private boolean calificada;
-    private boolean exitosa;
     private List<Pregunta> listaPreguntas;
     private double calificacionMinima;
     
     public ActividadEvaluacion(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, double calificacionMinima, Float calificacion) {
         super(titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion);
-        this.enviada = false;
-        this.calificada = false;
-        this.exitosa = false;
         this.listaPreguntas = new ArrayList<>();
 		this.calificacionMinima = calificacionMinima;
     }
     
-    public boolean getEnviada() {
-    	return enviada;
-    }
-    
-    public boolean getCalificada() {
-    	return calificada;
-    }
-    
-    public boolean getExitosa() {
-    	return exitosa;
-    }
     
     public List<Pregunta> getListaPreguntas() {
 		return listaPreguntas;

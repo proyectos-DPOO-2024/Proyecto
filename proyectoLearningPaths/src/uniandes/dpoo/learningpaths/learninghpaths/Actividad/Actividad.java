@@ -6,7 +6,10 @@ import java.time.LocalDateTime;
 
 public abstract class Actividad {
 	
-	private Float calificacion;
+	protected boolean enviada;
+    protected boolean calificada;
+    protected boolean exitosa;
+	protected Float calificacion;
 	protected String titulo;
 	protected String descripcion;
 	protected String objetivo;
@@ -17,8 +20,13 @@ public abstract class Actividad {
 	protected LocalDateTime fechaCreacion;
 	protected LocalDateTime fechaModificacion;
 	private List<Reseña> reseñas;
+	private static int contadorID = 0;
+	private int actividadID;
     
     public Actividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, Float calificacion) {
+        this.enviada = false;
+        this.calificada = false;
+        this.exitosa = false;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.objetivo = objetivo;
@@ -29,6 +37,8 @@ public abstract class Actividad {
         this.fechaCreacion = LocalDateTime.now();
         this.fechaModificacion = LocalDateTime.now();
         this.reseñas = new ArrayList<Reseña>();
+        this.actividadID = contadorID++;
+        
     }
     
     public String getTitulo() {
@@ -67,6 +77,17 @@ public abstract class Actividad {
     	return fechaModificacion;
     }
 
+    public boolean getEnviada() {
+    	return enviada;
+    }
+    
+    public boolean getCalificada() {
+    	return calificada;
+    }
+    
+    public boolean getExitosa() {
+    	return exitosa;
+    }
     
     public List<Reseña> getReseñas() {
 		return reseñas;
@@ -155,6 +176,10 @@ public abstract class Actividad {
     }
     
     public abstract void realizar();
+
+	public int getActividadID() {
+		return actividadID;
+	}
     
     
     
