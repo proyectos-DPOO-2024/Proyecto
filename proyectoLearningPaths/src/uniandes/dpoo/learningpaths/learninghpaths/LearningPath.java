@@ -4,6 +4,8 @@ package uniandes.dpoo.learningpaths.learninghpaths;
 import java.util.ArrayList;
 import java.util.List;
 
+import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+
 public class LearningPath {
     private static int contadorID = 0;
     private int learningpathID;
@@ -13,6 +15,7 @@ public class LearningPath {
     private int duracion;
     private double rating;
     private List<String> resenias;
+    private List<Actividad> actividades;
 
     public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating) {
         this.learningpathID = contadorID++;
@@ -22,6 +25,7 @@ public class LearningPath {
         this.duracion = duracion;
         this.rating = rating;
         this.resenias = new ArrayList<>();
+        this.actividades = new ArrayList<>();
     }
 
     public String getTitulo() {
@@ -90,6 +94,26 @@ public class LearningPath {
             }
         }
     }
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void agregarActividad(Actividad actividad) {
+        this.actividades.add(actividad);
+    }
+
+    public void mostrarActividades() {
+        if (actividades.isEmpty()) {
+            System.out.println("No hay actividades.");
+        } else {
+            System.out.println("Actividades:");
+            for (Actividad actividad : actividades) {
+                System.out.println("- " + actividad.getTitulo());
+            }
+        }
+    }
 }
+
 
 

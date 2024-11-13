@@ -19,7 +19,6 @@ public abstract class Actividad {
 	protected boolean completada;
 	protected LocalDateTime fechaCreacion;
 	protected LocalDateTime fechaModificacion;
-	private List<Reseña> reseñas;
 	private static int contadorID = 0;
 	private int actividadID;
     
@@ -36,7 +35,6 @@ public abstract class Actividad {
         this.completada = false;
         this.fechaCreacion = LocalDateTime.now();
         this.fechaModificacion = LocalDateTime.now();
-        this.reseñas = new ArrayList<Reseña>();
         this.actividadID = contadorID++;
         
     }
@@ -89,9 +87,6 @@ public abstract class Actividad {
     	return exitosa;
     }
     
-    public List<Reseña> getReseñas() {
-		return reseñas;
-	}
     
     public String getNivelDificultad() {
 		return nivelDificultad;
@@ -137,50 +132,5 @@ public abstract class Actividad {
 	public void setFechaModificacion(LocalDateTime fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
-
-	public void setReseñas(List<Reseña> reseñas) {
-		this.reseñas = reseñas;
-	}
-
-	public void agregarReseña(Reseña reseña) {
-    	this.reseñas.add(reseña);
-    }
-    
-
-	public void marcarCompletada() {
-    	this.completada = true;
-    }
-	
-	public abstract void clificar();
-	
-    public abstract Actividad clonar();
-    
-    public void editarActividad(String nuevoTitulo, String nuevaDescripcion, String nuevoObjetivo, String nuevoNivelDificultad, int nuevaDuracion) {
-    	this.titulo = nuevoTitulo;
-        this.descripcion = nuevaDescripcion;
-        this.objetivo = nuevoObjetivo;
-        this.nivelDificultad = nuevoNivelDificultad;
-        this.duracion = nuevaDuracion;
-        this.fechaModificacion = LocalDateTime.now();
-    }
-    public void agregarActividadPrevia(Actividad actividadPrevia) {
-        actividadesPrevias.add(actividadPrevia);
-    }
-    public boolean verificarPrerequisitosCompletados() {
-        for (Actividad previa : actividadesPrevias) {
-            if (!previa.completada) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    public abstract void realizar();
-
-	public int getActividadID() {
-		return actividadID;
-	}
-    
-    
-    
 }
+
