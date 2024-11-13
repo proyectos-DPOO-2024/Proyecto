@@ -4,138 +4,125 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import uniandes.dpoo.learningpaths.usuarios.Estudiante;
+import uniandes.dpoo.learningpaths.usuarios.Profesor;
 import uniandes.dpoo.learningpaths.usuarios.Usuario;
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+import uniandes.dpoo.learningpaths.persistencias.PersistenciaLearningPaths;
+import uniandes.dpoo.learningpaths.persistencias.PersistenciaUsuarios;
+import uniandes.dpoo.learningpaths.persistencias.PersistenciaResenia;
 
 public class Consola {
 
-    private static List<Usuario> usuarios = new ArrayList<>();
-    private static List<LearningPath> learningPaths = new ArrayList<>();
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean exit = false;
-
-        while (!exit) {
-            System.out.println("Bienvenido");
+        PersistenciaUsuarios persistenciaUsuarios = new PersistenciaUsuarios();
+        PersistenciaResenia persistenciaResenias = new PersistenciaResenia();
+        PersistenciaLearningPaths persistenciaLearningPaths = new PersistenciaLearningPaths();
+        
+        while (true) {
             System.out.println("1. Iniciar sesión");
-            System.out.println("2. registrarce");
+            System.out.println("2. Crear usuario");
+            System.out.println("3. Salir");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
 
-            System.out.print("Seleccione una opción: ");
-
-            int option = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea
-
-            switch (option) {
-                case 1:
-                    crearUsuario(scanner);
-                    break;
-                case 2:
-                    crearLearningPath(scanner);
-                    break;
-                case 3:
-                    asignarLearningPath(scanner);
-                    break;
-                case 4:
-                    mostrarLearningPaths(scanner);
-                    break;
-                case 5:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+            if (opcion == 1) {
+                iniciarSesion(scanner, persistenciaUsuarios, persistenciaResenias, persistenciaLearningPaths);
+            } else if (opcion == 2) {
+                crearUsuario(scanner, persistenciaUsuarios);
+            } else if (opcion == 3) {
+                System.out.println("Saliendo...");
+                break;
             }
         }
-
         scanner.close();
     }
 
-    private static void crearUsuario(Scanner scanner) {
-        System.out.print("Ingrese ID de Usuario: ");
+    private static void crearUsuario(Scanner scanner, PersistenciaUsuarios persistencia) {
+        System.out.print("Tipo de usuario (Estudiante/Profesor): ");
+        String tipoUsuario = scanner.nextLine().toLowerCase();
+
+        System.out.print("Usuario ID: ");
         String usuarioID = scanner.nextLine();
-        System.out.print("Ingrese Nombre de Usuario: ");
+        System.out.print("Nombre de usuario: ");
         String nombreUsuario = scanner.nextLine();
-        System.out.print("Ingrese Nombre: ");
+        System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
-        System.out.print("Ingrese Apellido: ");
+        System.out.print("Apellido: ");
         String apellido = scanner.nextLine();
-        System.out.print("Ingrese Contraseña: ");
+        System.out.print("Contraseña: ");
         String contraseña = scanner.nextLine();
 
-        Usuario usuario = new Usuario(usuarioID, nombreUsuario, nombre, apellido, contraseña) {};
-        usuarios.add(usuario);
-        System.out.println("Usuario creado exitosamente.");
-    }
-
-    private static void crearLearningPath(Scanner scanner) {
-        System.out.print("Ingrese ID de LearningPath: ");
-        String learningpathID = scanner.nextLine();
-        System.out.print("Ingrese Título: ");
-        String titulo = scanner.nextLine();
-        System.out.print("Ingrese Descripción: ");
-        String descripcion = scanner.nextLine();
-        System.out.print("Ingrese Duración: ");
-        int duracion = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
-        System.out.print("Ingrese Nivel de Dificultad: ");
-        String dificultad = scanner.nextLine();
-        System.out.print("Ingrese Rating: ");
-        double rating = scanner.nextDouble();
-        scanner.nextLine(); // Consumir el salto de línea
-
-        List<Actividad> actividades = new ArrayList<>(); // Aquí puedes agregar lógica para crear actividades
-        LearningPath learningPath = new LearningPath(learningpathID, titulo, descripcion, duracion, dificultad, rating, actividades, 0);
-        learningPaths.add(learningPath);
-        System.out.println("LearningPath creado exitosamente.");
-    }
-
-    private static void asignarLearningPath(Scanner scanner) {
-        System.out.print("Ingrese ID de Usuario: ");
-        String usuarioID = scanner.nextLine();
-        System.out.print("Ingrese ID de LearningPath: ");
-        String learningpathID = scanner.nextLine();
-
-        Usuario usuario = buscarUsuarioPorID(usuarioID);
-        LearningPath learningPath = buscarLearningPathPorID(learningpathID);
-
-        if (usuario != null && learningPath != null) {
-            // Aquí puedes agregar lógica para asignar el LearningPath al Usuario
-            System.out.println("LearningPath asignado exitosamente.");
+        if (tipoUsuario.equals("estudiante")) {
+            Estudiante estudiante = new Estudiante(usuarioID, nombreUsuario, nombre, apellido, contraseña);
+            persistencia.guardarUsuario(estudiante);
+            System.out.println("Estudiante creado y guardado exitosamente.");
+        } else if (tipoUsuario.equals("profesor")) {
+            Profesor profesor = new Profesor(usuarioID, nombreUsuario, nombre, apellido, contraseña);
+            persistencia.guardarUsuario(profesor);
+            System.out.println("Profesor creado y guardado exitosamente.");
         } else {
-            System.out.println("Usuario o LearningPath no encontrado.");
+            System.out.println("Tipo de usuario no válido.");
         }
     }
 
-    private static void mostrarLearningPaths(Scanner scanner) {
-        System.out.print("Ingrese ID de Usuario: ");
-        String usuarioID = scanner.nextLine();
+    private static void iniciarSesion(Scanner scanner, PersistenciaUsuarios persistenciaUsuarios, PersistenciaResenia persistenciaResenias, PersistenciaLearningPaths persistenciaLearningPaths) {
+        System.out.print("Nombre de usuario: ");
+        String nombreUsuario = scanner.nextLine();
+        System.out.print("Contraseña: ");
+        String contraseña = scanner.nextLine();
 
-        Usuario usuario = buscarUsuarioPorID(usuarioID);
+        Usuario usuario = persistenciaUsuarios.obtenerUsuarios().stream()
+            .filter(u -> u.getNombreUsuario().equals(nombreUsuario) && u.getContraseña().equals(contraseña))
+            .findFirst()
+            .orElse(null);
 
         if (usuario != null) {
-            // Aquí puedes agregar lógica para mostrar los LearningPaths del Usuario
-            System.out.println("Mostrando LearningPaths del Usuario.");
+            System.out.println("Inicio de sesión exitoso.");
+            if (usuario.getTipoUsuario().equals("Estudiante")) {
+                opcionesEstudiante(scanner, (Estudiante) usuario, persistenciaLearningPaths);
+            } else if (usuario.getTipoUsuario().equals("Profesor")) {
+                opcionesProfesor(scanner, (Profesor) usuario, persistenciaLearningPaths);
+            }
         } else {
-            System.out.println("Usuario no encontrado.");
+            System.out.println("Nombre de usuario o contraseña incorrectos.");
         }
     }
 
-    private static Usuario buscarUsuarioPorID(String usuarioID) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getUsuarioID().equals(usuarioID)) {
-                return usuario;
+    private static void opcionesEstudiante(Scanner scanner, Estudiante estudiante, PersistenciaLearningPaths persistenciaLearningPaths) {
+        while (true) {
+            System.out.println("Opciones para Estudiante:");
+            System.out.println("1. Crear resenia");
+            System.out.println("2. Volver al menú principal");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); 
+
+            if (opcion == 1) {
+                estudiante.crearResenia(scanner, persistenciaLearningPaths);
+            } else if (opcion == 2) {
+                break;
             }
         }
-        return null;
     }
 
-    private static LearningPath buscarLearningPathPorID(String learningpathID) {
-        for (LearningPath learningPath : learningPaths) {
-            if (learningPath.getLearningpathID().equals(learningpathID)) {
-                return learningPath;
+    private static void opcionesProfesor(Scanner scanner, Profesor profesor, PersistenciaLearningPaths persistenciaLearningPaths) {
+        while (true) {
+            System.out.println("Opciones para Profesor:");
+            System.out.println("1. Crear Learning Path");
+            System.out.println("2. Ver Learning Paths");
+            System.out.println("3. Volver al menú principal");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); 
+
+            if (opcion == 1) {
+                profesor.crearLearningPath(scanner, persistenciaLearningPaths);
+            } else if (opcion == 2) {
+                profesor.verLearningPaths(persistenciaLearningPaths);
+            } else if (opcion == 3) {
+                break;
             }
         }
-        return null;
     }
 }

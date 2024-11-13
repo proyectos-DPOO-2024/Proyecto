@@ -1,18 +1,21 @@
 package uniandes.dpoo.learningpaths.usuarios;
 
 public abstract class Usuario {
-	
-	private String usuarioID;
+
+    private String usuarioID;
 	private String nombreUsuario;
 	private String nombre;
 	private String apellido;
 	private String contraseña;
-	public Usuario(String usuarioID, String nombreUsuario, String nombre, String apellido, String contraseña) {
+    private String tipoUsuario;
+
+	public Usuario(String usuarioID, String nombreUsuario, String nombre, String apellido, String contraseña, String tipoUsuario) {
 		this.usuarioID = usuarioID;
 		this.nombreUsuario = nombreUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.contraseña = contraseña;
+		this.tipoUsuario = tipoUsuario;
 	}
 	public String getUsuarioID() {
 		return usuarioID;
@@ -45,7 +48,13 @@ public abstract class Usuario {
 		this.contraseña = contraseña;
 	}
 	
-	
+	public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 	
 
 }

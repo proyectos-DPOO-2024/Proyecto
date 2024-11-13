@@ -4,95 +4,92 @@ package uniandes.dpoo.learningpaths.learninghpaths;
 import java.util.ArrayList;
 import java.util.List;
 
-import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
-import uniandes.dpoo.learningpaths.learninghpaths.Actividad.CatalogoActividades;
-
 public class LearningPath {
-	
-	private static int contadorID = 0;
-	private int learningpathID;
-	private String titulo;
-	private String descripcion;
-	private String nivelDificultad;
-	private int duracion;
-	private double rating;
-	private List<Actividad> actividades;
-	
-	public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating) {
-		this.learningpathID = contadorID++;
-		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.nivelDificultad = dificultad;
-		this.duracion = duracion;
-		this.rating = rating;
-		this.actividades = new ArrayList<Actividad>();
-		
-	}
+    private static int contadorID = 0;
+    private int learningpathID;
+    private String titulo;
+    private String descripcion;
+    private String nivelDificultad;
+    private int duracion;
+    private double rating;
+    private List<String> resenias;
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating) {
+        this.learningpathID = contadorID++;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.nivelDificultad = dificultad;
+        this.duracion = duracion;
+        this.rating = rating;
+        this.resenias = new ArrayList<>();
+    }
 
-	
-	public int getLearningpathID() {
-		return learningpathID;
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	public void setLearningpathID(int learningpathID) {
-		this.learningpathID = learningpathID;
-	}
+    public int getLearningpathID() {
+        return learningpathID;
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public void setLearningpathID(int learningpathID) {
+        this.learningpathID = learningpathID;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public String getNivelDificultad() {
-		return nivelDificultad;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public void setNivelDificultad(String i) {
-		this.nivelDificultad = i;
-	}
+    public String getNivelDificultad() {
+        return nivelDificultad;
+    }
 
-	public int getDuracion() {
-		return duracion;
-	}
+    public void setNivelDificultad(String nivelDificultad) {
+        this.nivelDificultad = nivelDificultad;
+    }
 
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
-	}
+    public int getDuracion() {
+        return duracion;
+    }
 
-	public double getRating() {
-		return rating;
-	}
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
 
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
+    public double getRating() {
+        return rating;
+    }
 
-	public List<Actividad> getActividades() {
-		return actividades;
-	}
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 
-	public void setActividades(List<Actividad> actividades) {
-		this.actividades = actividades;
-	}
-	
+    public List<String> getResenias() {
+        return resenias;
+    }
 
-	
-	public void agregarActividad (Actividad actividad) {
-		
-		this.actividades.add(actividad);
-	}
-	
-	
-	
+    public void agregarResenia(String resenia) {
+        this.resenias.add(resenia);
+    }
+
+    public void mostrarResenias() {
+        if (resenias.isEmpty()) {
+            System.out.println("No hay reseñas.");
+        } else {
+            System.out.println("Reseñas:");
+            for (String resenia : resenias) {
+                System.out.println("- " + resenia);
+            }
+        }
+    }
 }
+
+
