@@ -82,7 +82,7 @@ public class Consola {
         if (usuario != null) {
             System.out.println("Inicio de sesión exitoso.");
             if (usuario.getTipoUsuario().equals("Estudiante")) {
-                opcionesEstudiante(scanner, (Estudiante) usuario, persistenciaLearningPaths);
+                opcionesEstudiante(scanner, (Estudiante) usuario, persistenciaLearningPaths, persistenciaResenias);
             } else if (usuario.getTipoUsuario().equals("Profesor")) {
                 opcionesProfesor(scanner, (Profesor) usuario, persistenciaLearningPaths, persistenciaActividades);
             }
@@ -91,7 +91,7 @@ public class Consola {
         }
     }
 
-    private static void opcionesEstudiante(Scanner scanner, Estudiante estudiante, PersistenciaLearningPaths persistenciaLearningPaths) {
+    private static void opcionesEstudiante(Scanner scanner, Estudiante estudiante, PersistenciaLearningPaths persistenciaLearningPaths, PersistenciaResenia persistenciaResenias) {
         while (true) {
             System.out.println("Opciones para Estudiante:");
             System.out.println("1. Inscribirse en Learning Path");
@@ -111,7 +111,7 @@ public class Consola {
             } else if (opcion == 3) {
                 estudiante.marcarLearningPathCompletado(scanner);
             } else if (opcion == 4) {
-                estudiante.crearResenia(scanner, persistenciaLearningPaths);
+            	estudiante.crearResenia(scanner, persistenciaLearningPaths, persistenciaResenias);
             } else if (opcion == 5) {
                 estudiante.verActividadesLearningPath(scanner);
             } else if (opcion == 6) {

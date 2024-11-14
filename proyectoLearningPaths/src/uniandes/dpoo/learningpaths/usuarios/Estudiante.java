@@ -8,6 +8,7 @@ import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
 import uniandes.dpoo.learningpaths.persistencias.PersistenciaLearningPaths;
+import uniandes.dpoo.learningpaths.persistencias.PersistenciaResenia;
 
 public class Estudiante extends Usuario {
 
@@ -15,7 +16,7 @@ public class Estudiante extends Usuario {
         super(nombreUsuario, nombre, apellido, contraseña, "Estudiante");
     }
 
-    public void crearResenia(Scanner scanner, PersistenciaLearningPaths persistenciaLearningPaths) {
+    public void crearResenia(Scanner scanner, PersistenciaLearningPaths persistenciaLearningPaths, PersistenciaResenia persistenciaResenias) {
         System.out.print("Ingrese el título del Learning Path para la reseña: ");
         String titulo = scanner.nextLine();
         LearningPath learningPath = persistenciaLearningPaths.obtenerLearningPaths().stream()
@@ -25,8 +26,19 @@ public class Estudiante extends Usuario {
 
         if (learningPath != null) {
             System.out.print("Ingrese la reseña: ");
-            String resenia = scanner.nextLine();
+            String reseniaText = scanner.nextLine();
+            System.out.print("Ingrese la calificación (1-5): ");
+            int calificacion = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea
+
+            if (calificacion < 1 || calificacion > 5) {
+                System.out.println("Calificación inválida. Debe estar entre 1 y 5.");
+                return;
+            }
+
+            Reseña resenia = new Reseña(reseniaText, calificacion);
             learningPath.agregarResenia(resenia);
+            persistenciaResenias.guardarReseña(reseniaText);
             System.out.println("Reseña creada y guardada exitosamente.");
         } else {
             System.out.println("Learning Path no encontrado.");

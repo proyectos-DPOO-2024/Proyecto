@@ -15,7 +15,7 @@ public class LearningPath {
     private String nivelDificultad;
     private int duracion;
     private double rating;
-    private List<Reseña> resenias;
+    private List<Reseña> reseñas;
     private List<Actividad> actividades;
 
     public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating) {
@@ -25,7 +25,7 @@ public class LearningPath {
         this.nivelDificultad = dificultad;
         this.duracion = duracion;
         this.rating = rating;
-        this.resenias = new ArrayList<Reseña>();
+        this.reseñas = new ArrayList<>();
         this.actividades = new ArrayList<Actividad>();
     }
 
@@ -77,20 +77,20 @@ public class LearningPath {
         this.rating = rating;
     }
 
-    public List<Reseña> getResenias() {
-        return resenias;
+    public void agregarResenia(Reseña reseña) {
+        this.reseñas.add(reseña);
     }
 
-    public void agregarResenia(Reseña resenia) {
-        this.resenias.add(resenia);
+    public List<Reseña> getResenias() {
+        return reseñas;
     }
 
     public void mostrarResenias() {
-        if (resenias.isEmpty()) {
+        if (reseñas.isEmpty()) {
             System.out.println("No hay reseñas.");
         } else {
             System.out.println("Reseñas:");
-            for (Reseña resenia : resenias) {
+            for (Reseña resenia : reseñas) {
                 System.out.println("- " + resenia.getCalificacion());
                 System.out.println("- " + resenia.getReseñaText());
                 
