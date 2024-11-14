@@ -11,6 +11,7 @@ import uniandes.dpoo.learningpaths.persistencias.PersistenciaLearningPaths;
 import uniandes.dpoo.learningpaths.persistencias.PersistenciaResenia;
 
 public class Estudiante extends Usuario {
+	private static final long serialVersionUID = 1L;
 
     public Estudiante( String nombreUsuario, String nombre, String apellido, String contraseña) {
         super(nombreUsuario, nombre, apellido, contraseña, "Estudiante");

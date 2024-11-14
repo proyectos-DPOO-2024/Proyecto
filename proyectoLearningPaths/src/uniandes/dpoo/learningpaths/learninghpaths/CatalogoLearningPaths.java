@@ -1,9 +1,11 @@
 package uniandes.dpoo.learningpaths.learninghpaths;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogoLearningPaths {
+public class CatalogoLearningPaths implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private static CatalogoLearningPaths instancia;
 	private List<LearningPath> catalogoLearningPaths;

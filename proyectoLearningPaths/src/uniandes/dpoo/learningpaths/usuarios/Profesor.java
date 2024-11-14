@@ -14,6 +14,7 @@ import uniandes.dpoo.learningpaths.learninghpaths.Actividad.CatalogoActividades;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
 
 public class Profesor extends Usuario {
+	private static final long serialVersionUID = 1L;
 
 	private List<LearningPath> learnignPathsCreados;
 	private CatalogoActividades catalogoActividades;

@@ -2,9 +2,11 @@ package uniandes.dpoo.learningpaths.learninghpaths.Actividad;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Actividad {
+public abstract class Actividad implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	protected boolean enviada;
     protected boolean calificada;

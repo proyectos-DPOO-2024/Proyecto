@@ -1,13 +1,16 @@
 package uniandes.dpoo.learningpaths.learninghpaths;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
 
-public class LearningPath {
+public class LearningPath implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
     private static int contadorID = 0;
     private int learningpathID;
     private String titulo;

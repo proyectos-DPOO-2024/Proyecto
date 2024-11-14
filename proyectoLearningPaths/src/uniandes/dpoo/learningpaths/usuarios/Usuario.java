@@ -1,10 +1,12 @@
 package uniandes.dpoo.learningpaths.usuarios;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
-public abstract class Usuario {
+public abstract class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private static int contadorID;
     private int usuarioID;
