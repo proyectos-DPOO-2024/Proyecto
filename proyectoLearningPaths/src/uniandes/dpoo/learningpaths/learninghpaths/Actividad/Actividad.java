@@ -136,5 +136,8 @@ public abstract class Actividad {
 	public int getActividadID() {
 		return actividadID;
 	}
+	public void marcarCompletada() {
+    		this.completada = true;
+    }
 }
 
