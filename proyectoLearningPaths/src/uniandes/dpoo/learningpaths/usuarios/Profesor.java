@@ -96,6 +96,11 @@ public class Profesor extends Usuario {
 
 	public void calificarExamen(Actividad evaluacion) {
 		boolean enviado = evaluacion.getCompletada();
-		evaluacion.clificar();
+		evaluacion.calificar();
+	}
+	
+	public void calificarTarea(Actividad tarea) {
+		boolean enviado = tarea.getCompletada();
+		tarea.calificar();
 	}
 }
