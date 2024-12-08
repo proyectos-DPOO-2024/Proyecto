@@ -84,7 +84,7 @@ public class Consola {
             if (usuario.getTipoUsuario().equals("Estudiante")) {
                 opcionesEstudiante(scanner, (Estudiante) usuario, persistenciaLearningPaths, persistenciaResenias);
             } else if (usuario.getTipoUsuario().equals("Profesor")) {
-                opcionesProfesor(scanner, (Profesor) usuario, persistenciaLearningPaths, persistenciaActividades);
+                opcionesProfesor(scanner, (Profesor) usuario, persistenciaLearningPaths, persistenciaActividades, persistenciaUsuarios);
             }
         } else {
             System.out.println("Nombre de usuario o contraseña incorrectos.");
@@ -96,11 +96,13 @@ public class Consola {
             System.out.println("Opciones para Estudiante:");
             System.out.println("1. Inscribirse en Learning Path");
             System.out.println("2. Ver Learning Paths inscritos");
-            System.out.println("3. Marcar Learning Path como completado");
-            System.out.println("4. Crear resenia");
-            System.out.println("5. Ver actividades de un Learning Path");
-            System.out.println("6. Ver progreso");
-            System.out.println("7. Volver al menú principal");
+            System.out.println("3. Ver actividades de un Learning Path");
+            System.out.println("4. Marcar actividad como iniciada/completa");
+            System.out.println("5. Marcar Learning Path como completado");
+            System.out.println("6. Crear reseña");
+            System.out.println("7. Ver progreso");
+            System.out.println("8. Ver feedback y notas de actividades");
+            System.out.println("9. Volver al menú principal");
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
@@ -109,42 +111,90 @@ public class Consola {
             } else if (opcion == 2) {
                 estudiante.mostrarLearningPathsInscritos();
             } else if (opcion == 3) {
-                estudiante.marcarLearningPathCompletado(scanner);
-            } else if (opcion == 4) {
-            	estudiante.crearResenia(scanner, persistenciaLearningPaths, persistenciaResenias);
-            } else if (opcion == 5) {
                 estudiante.verActividadesLearningPath(scanner);
+            } else if (opcion == 4) {
+                opcionesMarcarActividad(scanner, estudiante, persistenciaLearningPaths);
+            } else if (opcion == 5) {
+                estudiante.marcarLearningPathCompletado(scanner);
             } else if (opcion == 6) {
-                estudiante.mostrarProgreso();
+                estudiante.crearResenia(scanner, persistenciaLearningPaths, persistenciaResenias);
             } else if (opcion == 7) {
+                opcionesVerProgreso(scanner, estudiante);
+            } else if (opcion == 8) {
+                estudiante.verFeedback(scanner);
+            } else if (opcion == 9) {
                 break;
             }
         }
     }
 
-    private static void opcionesProfesor(Scanner scanner, Profesor profesor, PersistenciaLearningPaths persistenciaLearningPaths, PersistenciaActividades persistenciaActividades) {
+    private static void opcionesMarcarActividad(Scanner scanner, Estudiante estudiante, PersistenciaLearningPaths persistenciaLearningPaths) {
+        while (true) {
+            System.out.println("Opciones para marcar actividad:");
+            System.out.println("1. Marcar inicio de actividad");
+            System.out.println("2. Marcar actividad como completa");
+            System.out.println("3. Volver al menú anterior");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            if (opcion == 1) {
+                estudiante.marcarActividadComoIniciada(scanner, persistenciaLearningPaths);
+            } else if (opcion == 2) {
+                estudiante.marcarActividadComoCompleta(scanner, persistenciaLearningPaths);
+            } else if (opcion == 3) {
+                break;
+            }
+        }
+    }
+
+    private static void opcionesVerProgreso(Scanner scanner, Estudiante estudiante) {
+        while (true) {
+            System.out.println("Opciones de Progreso:");
+            System.out.println("1. Ver progreso de actividades");
+            System.out.println("2. Ver progreso del Learning Path");
+            System.out.println("3. Volver al menú anterior");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            if (opcion == 1) {
+                estudiante.mostrarProgresoActividades(scanner);
+            } else if (opcion == 2) {
+                estudiante.mostrarProgreso();
+            } else if (opcion == 3) {
+                break;
+            }
+        }
+    }
+
+    private static void opcionesProfesor(Scanner scanner, Profesor profesor, PersistenciaLearningPaths persistenciaLearningPaths, PersistenciaActividades persistenciaActividades,PersistenciaUsuarios persistenciaUsuarios) {
         while (true) {
             System.out.println("Opciones para Profesor:");
             System.out.println("1. Crear Learning Path");
-            System.out.println("2. Ver Learning Paths");
-            System.out.println("3. Crear Actividad");
-            System.out.println("4. Ver catalogo de actividades");
-            System.out.println("5. Agregar actividad a learningpath");
-            System.out.println("6. Volver al menú principal");
+            System.out.println("2. Editar Learning Path");
+            System.out.println("3. Ver Learning Paths");
+            System.out.println("4. Crear Actividad");
+            System.out.println("5. Ver catálogo de actividades");
+            System.out.println("6. Agregar actividad a Learning Path");
+            System.out.println("7. Calificar actividades de estudiante");
+            System.out.println("8. Volver al menú principal");
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
             if (opcion == 1) {
                 ConsolaProfesor.crearLearningPath(profesor, scanner, persistenciaLearningPaths);
             } else if (opcion == 2) {
-            	ConsolaProfesor.verLearningPaths(persistenciaLearningPaths);
+                ConsolaProfesor.editarLearningPath(profesor, scanner);
             } else if (opcion == 3) {
-            	ConsolaProfesor.crearNuevaActividad(scanner, profesor);
-            }else if (opcion == 4) {
-            	ConsolaActividades.mostrarCatalogo();
-        	}else if (opcion == 5) {
-            	ConsolaProfesor.agregarActividadALearningPath(profesor, scanner);
-            }else if (opcion == 6) {
+                ConsolaProfesor.verLearningPaths(persistenciaLearningPaths);
+            } else if (opcion == 4) {
+                ConsolaProfesor.crearNuevaActividad(scanner, profesor);
+            } else if (opcion == 5) {
+                ConsolaActividades.mostrarCatalogo();
+            } else if (opcion == 6) {
+                ConsolaProfesor.agregarActividadALearningPath(profesor, scanner);
+            } else if (opcion == 7) {
+            	ConsolaProfesor.calificarActividadesEstudiante(scanner, profesor, persistenciaUsuarios, persistenciaLearningPaths);
+            } else if (opcion == 8) {
                 break;
             }
         }
