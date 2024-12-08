@@ -1,6 +1,7 @@
 package uniandes.dpoo.learningpaths.usuarios;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import uniandes.dpoo.learningpaths.learninghpaths.CatalogoLearningPaths;
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
@@ -12,6 +13,7 @@ import uniandes.dpoo.learningpaths.learninghpaths.Actividad.ActividadRevisionRec
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.ActividadTarea;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.CatalogoActividades;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
+import uniandes.dpoo.learningpaths.persistencias.PersistenciaUsuarios;
 
 public class Profesor extends Usuario {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +31,7 @@ public class Profesor extends Usuario {
 
 	public List<LearningPath> getLearnignPathsCreados() {
 		return learnignPathsCreados;
-	}
+	} 
 
 	public void setLearnignPathsCreados(List<LearningPath> learnignPathsCreados) {
 		this.learnignPathsCreados = learnignPathsCreados;
@@ -79,29 +81,83 @@ public class Profesor extends Usuario {
 		return actividad;
 	}
 
-	public void agregarActLearningPath (int idlearningpath ,int idactividad) {
+	public void agregarActLearningPath(String tituloLearningPath, String tituloActividad) {
+        LearningPath learningPath = catalogoLearningPaths.getCatalogoLearningPaths().stream()
+            .filter(lp -> lp.getTitulo().equalsIgnoreCase(tituloLearningPath))
+            .findFirst()
+            .orElse(null);
 
-		for (LearningPath learning : this.learnignPathsCreados) {
+        Actividad actividad = catalogoActividades.getActividades().stream()
+            .filter(act -> act.getTitulo().equalsIgnoreCase(tituloActividad))
+            .findFirst()
+            .orElse(null);
 
-			if(learning.getLearningpathID() == idlearningpath) {
-				for(Actividad actividad : catalogoActividades.getActividades()) {
-					if(actividad.getActividadID() == idactividad) {
-						learning.agregarActividad(actividad);;
-					}
-				}
-			}
-		}
-
-	}
-
-
-	public void calificarExamen(Actividad evaluacion) {
-		boolean enviado = evaluacion.getCompletada();
-		evaluacion.calificar();
-	}
+        if (learningPath != null && actividad != null) {
+            learningPath.agregarActividad(actividad);
+            System.out.println("Actividad agregada al Learning Path exitosamente.");
+        } else {
+            System.out.println("Learning Path o Actividad no encontrados.");
+        }
+    } 
 	
-	public void calificarTarea(Actividad tarea) {
-		boolean enviado = tarea.getCompletada();
-		tarea.calificar();
-	}
+	public void editarLearningPath(String tituloLearningPath, String nuevoTitulo, String nuevaDescripcion, int nuevaDuracion, String nuevaDificultad, double nuevoRating) {
+        LearningPath learningPath = catalogoLearningPaths.getCatalogoLearningPaths().stream()
+            .filter(lp -> lp.getTitulo().equalsIgnoreCase(tituloLearningPath))
+            .findFirst()
+            .orElse(null);
+
+        if (learningPath != null) {
+            learningPath.setTitulo(nuevoTitulo);
+            learningPath.setDescripcion(nuevaDescripcion);
+            learningPath.setDuracion(nuevaDuracion);
+            learningPath.setNivelDificultad(nuevaDificultad);
+            learningPath.setRating(nuevoRating);
+            System.out.println("Learning Path editado exitosamente.");
+        } else {
+            System.out.println("Learning Path no encontrado.");
+        }
+    }
+	
+    public void calificarActividad(Scanner scanner, PersistenciaUsuarios persistenciaUsuarios) {
+        System.out.print("Ingrese el nombre de usuario del estudiante: ");
+        String nombreUsuario = scanner.nextLine();
+        Estudiante estudiante = (Estudiante) persistenciaUsuarios.obtenerUsuarios().stream()
+            .filter(u -> u.getNombreUsuario().equals(nombreUsuario) && u.getTipoUsuario().equals("Estudiante"))
+            .findFirst()
+            .orElse(null);
+
+        if (estudiante != null) {
+            System.out.print("Ingrese el título del Learning Path: ");
+            String tituloLearningPath = scanner.nextLine();
+            LearningPath learningPath = estudiante.getLearningPathsInscritos().stream()
+                .filter(lp -> lp.getTitulo().equalsIgnoreCase(tituloLearningPath))
+                .findFirst()
+                .orElse(null);
+
+            if (learningPath != null) {
+                System.out.print("Ingrese el nombre de la actividad: ");
+                String nombreActividad = scanner.nextLine();
+                Actividad actividad = learningPath.getActividades().stream()
+                    .filter(act -> act.getTitulo().equalsIgnoreCase(nombreActividad))
+                    .findFirst()
+                    .orElse(null);
+
+                if (actividad != null) {
+                    System.out.print("Ingrese la calificación de la actividad: ");
+                    Float calificacion = scanner.nextFloat();
+                    scanner.nextLine(); // Consume newline
+                    actividad.setCalificacion(calificacion);
+                    System.out.println("Actividad calificada exitosamente.");
+                } else {
+                    System.out.println("Actividad no encontrada.");
+                }
+            } else {
+                System.out.println("Learning Path no encontrado.");
+            }
+        } else {
+            System.out.println("Estudiante no encontrado.");
+        }
+    }
+
+
 }

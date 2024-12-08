@@ -19,10 +19,12 @@ public abstract class Actividad implements Serializable {
 	protected int duracion;
 	protected List<Actividad> actividadesPrevias;
 	protected boolean completada;
+	protected boolean iniciada;
 	protected LocalDateTime fechaCreacion;
 	protected LocalDateTime fechaModificacion;
 	private static int contadorID = 0;
 	private int actividadID;
+	private String feedback;
     
     public Actividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion, Float calificacion) {
         this.enviada = false;
@@ -35,10 +37,27 @@ public abstract class Actividad implements Serializable {
         this.duracion = duracion;
         this.actividadesPrevias = new ArrayList<>();
         this.completada = false;
+        this.iniciada = false;
         this.fechaCreacion = LocalDateTime.now();
         this.fechaModificacion = LocalDateTime.now();
         this.actividadID = contadorID++;
+        this.calificacion = calificacion;
+        this.feedback = "";
         
+    }
+    
+    public Actividad(String titulo, String descripcion, String objetivo, String nivelDificultad, int duracion) {
+        this(titulo, descripcion, objetivo, nivelDificultad, duracion, null);
+    }
+    
+    public void calificar(float calificacion, String feedback) {
+        this.calificacion = calificacion;
+        this.feedback = feedback;
+        this.calificada = true;
+    }
+    
+    public List<Actividad> getActividadesPrevias() {
+    	return actividadesPrevias;
     }
     
     public String getTitulo() {
@@ -59,10 +78,6 @@ public abstract class Actividad implements Serializable {
     
     public int getDuracion() {
     	return duracion;
-    }
-    
-    public List<Actividad> getActividadesPrevias() {
-    	return actividadesPrevias;
     }
     
     public boolean getCompletada() {
@@ -94,6 +109,9 @@ public abstract class Actividad implements Serializable {
 		return nivelDificultad;
 	}
     
+    public void setCalificacion(float calificacion) {
+    	this.calificacion = calificacion;
+    }
 
 	public Float getCalificacion() {
 		return calificacion;
@@ -141,5 +159,27 @@ public abstract class Actividad implements Serializable {
 	public void marcarCompletada() {
     		this.completada = true;
     }
+	public boolean isCompleta() {
+        return completada;
+    }
+	
+	public void marcarComoIniciada() {
+        this.iniciada = true;
+    }
+
+    public boolean getIniciada() {
+        return iniciada;
+    }
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+    
+
+    
+    
 }
 

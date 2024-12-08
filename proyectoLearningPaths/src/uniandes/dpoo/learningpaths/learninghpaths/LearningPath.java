@@ -94,8 +94,8 @@ public class LearningPath implements Serializable {
         } else {
             System.out.println("Reseñas:");
             for (Reseña resenia : reseñas) {
-                System.out.println("- " + resenia.getCalificacion());
-                System.out.println("- " + resenia.getReseñaText());
+                System.out.println("-Calificacion: " + resenia.getCalificacion());
+                System.out.println("-Reseña: " + resenia.getReseñaText());
                 
             }
         }
