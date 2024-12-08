@@ -135,8 +135,10 @@ public class InicioSesion extends JFrame {
                 // Lógica para opciones de estudiante
                 System.out.println("Opciones para Estudiante.");
             } else if (usuario instanceof Profesor) {
-                // Lógica para opciones de profesor
-                System.out.println("Opciones para Profesor.");
+            	JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+                Profesor profesor = (Profesor) usuario;
+                new InterfazProfesor(profesor, persistenciaLearningPaths, persistenciaUsuarios).setVisible(true);
+                dispose();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Nombre de usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
