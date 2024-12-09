@@ -26,6 +26,7 @@ public class InterfazEstudiante {
 	private Estudiante estudiante;
 	private PersistenciaLearningPaths persistenciaLearningPaths;
 	private Usuario usuario;
+	private PersistenciaResenia persistenciaResenias;
 	
 	public InterfazEstudiante(Estudiante estudiante, CatalogoLearningPath catalogo,
             PersistenciaLearningPaths persistenciaLearningPaths,
