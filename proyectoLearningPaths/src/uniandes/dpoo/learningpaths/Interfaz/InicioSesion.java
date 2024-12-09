@@ -137,7 +137,7 @@ public class InicioSesion extends JFrame {
             } else if (usuario instanceof Profesor) {
             	JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
                 Profesor profesor = (Profesor) usuario;
-                new InterfazProfesor(profesor, persistenciaLearningPaths, persistenciaUsuarios).setVisible(true);
+                new InterfazProfesor(profesor, persistenciaLearningPaths, persistenciaUsuarios, persistenciaActividades).setVisible(true);
                 dispose();
             }
         } else {

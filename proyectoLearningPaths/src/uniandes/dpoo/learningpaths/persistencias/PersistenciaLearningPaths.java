@@ -3,12 +3,13 @@ package uniandes.dpoo.learningpaths.persistencias;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
 
 public class PersistenciaLearningPaths {
 
-    private List<LearningPath> learningPaths = new ArrayList<>();
+    private ArrayList<LearningPath> learningPaths = new ArrayList<>();
     private static final String FILE_PATH = "learningpaths.ser";
 
     public PersistenciaLearningPaths() {
@@ -20,7 +21,7 @@ public class PersistenciaLearningPaths {
         guardarLearningPaths();
     }
 
-    public List<LearningPath> obtenerLearningPaths() {
+    public ArrayList<LearningPath> obtenerLearningPaths() {
         return learningPaths;
     }
 
@@ -33,17 +34,23 @@ public class PersistenciaLearningPaths {
         }
     }
 
-    private void cargarLearningPaths() {
+    @SuppressWarnings("unchecked")
+	private void cargarLearningPaths() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
             System.out.println("Archivo " + FILE_PATH + " no encontrado. Creando nuevo archivo.");
             return;
         }
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_PATH))) {
-            learningPaths = (List<LearningPath>) ois.readObject();
+            learningPaths = (ArrayList<LearningPath>) ois.readObject();
+            learningPaths.removeIf(Objects::isNull);
             System.out.println("Learning Paths cargados desde " + file.getAbsolutePath());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+    
+
+
+
 }

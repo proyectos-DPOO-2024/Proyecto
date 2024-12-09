@@ -187,9 +187,9 @@ public class Consola {
             } else if (opcion == 3) {
                 ConsolaProfesor.verLearningPaths(persistenciaLearningPaths);
             } else if (opcion == 4) {
-                ConsolaProfesor.crearNuevaActividad(scanner, profesor);
+                ConsolaProfesor.crearNuevaActividad(scanner, profesor, persistenciaActividades);
             } else if (opcion == 5) {
-                ConsolaActividades.mostrarCatalogo();
+                ConsolaActividades.mostrarCatalogo(persistenciaActividades);
             } else if (opcion == 6) {
                 ConsolaProfesor.agregarActividadALearningPath(profesor, scanner);
             } else if (opcion == 7) {

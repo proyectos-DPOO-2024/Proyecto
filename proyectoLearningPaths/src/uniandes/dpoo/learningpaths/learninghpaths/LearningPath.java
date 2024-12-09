@@ -11,7 +11,7 @@ import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
 public class LearningPath implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-    private static int contadorID = 0;
+    public static int contadorID = 0;
     private int learningpathID;
     private String titulo;
     private String descripcion;
@@ -119,6 +119,18 @@ public class LearningPath implements Serializable {
             }
         }
     }
+    
+    @Override
+    public String toString() {
+        return "LearningPath{" +
+               "titulo='" + titulo + '\'' +
+               ", descripcion='" + descripcion + '\'' +
+               ", nivelDificultad=" + nivelDificultad +
+               ", duracion=" + duracion +
+               ", rating=" + rating +
+               '}';
+    }
+
 }
 
 

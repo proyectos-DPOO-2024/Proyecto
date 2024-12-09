@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import uniandes.dpoo.learningpaths.learninghpaths.LearningPath;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
+import uniandes.dpoo.learningpaths.persistencias.PersistenciaActividades;
 import uniandes.dpoo.learningpaths.persistencias.PersistenciaLearningPaths;
 import uniandes.dpoo.learningpaths.persistencias.PersistenciaUsuarios;
 import uniandes.dpoo.learningpaths.usuarios.Estudiante;
@@ -37,13 +38,18 @@ public class ConsolaProfesor {
     public static void verLearningPaths(PersistenciaLearningPaths persistenciaLearningPaths) {
         System.out.println("Learning Paths:");
         for (LearningPath learningPath : persistenciaLearningPaths.obtenerLearningPaths()) {
+            if (learningPath == null) {
+                System.out.println("Se encontró un Learning Path nulo. Ignorando...");
+                continue;
+            }
             System.out.println("- " + learningPath.getTitulo());
             learningPath.mostrarResenias();
             learningPath.mostrarActividades();
         }
     }
 
-    public static void crearNuevaActividad(Scanner scanner, Profesor profe) {
+
+    public static void crearNuevaActividad(Scanner scanner, Profesor profe, PersistenciaActividades persistenciaactividades) {
         System.out.print("Ingrese el tipo de actividad (quiz, encuesta, evaluacion, revision recurso, tarea): ");
         String tipo = scanner.nextLine();
 
@@ -73,7 +79,8 @@ public class ConsolaProfesor {
         }
 
         // Llama al método crearActividad del profesor
-        profe.crearActividad(tipo, titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion, tiporecurso);
+        Actividad actividad = profe.crearActividad(tipo, titulo, descripcion, objetivo, nivelDificultad, duracion, calificacion, tiporecurso);
+        persistenciaactividades.guardarActividad(actividad);
     }
 
     public static void agregarActividadALearningPath(Profesor profe, Scanner scanner) {
