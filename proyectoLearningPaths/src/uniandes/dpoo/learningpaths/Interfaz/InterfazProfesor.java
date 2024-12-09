@@ -96,6 +96,14 @@ public class InterfazProfesor extends JFrame {
             }
         });
         contentPane.add(btnCalificarActividades);
+        
+        JButton btnVerProgresoEstudiantes = new JButton("Ver progreso de los estudiantes");
+        btnVerProgresoEstudiantes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                verProgresoEstudiantes();
+            }
+        });
+        contentPane.add(btnVerProgresoEstudiantes);
     }
 
     private void crearLearningPath() {
@@ -361,5 +369,58 @@ public class InterfazProfesor extends JFrame {
         }
     }
     
+    private void verProgresoEstudiantes() {
+    	JFrame frame = new JFrame("Visualización de Actividades Realizadas");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(800, 600);
+        
+    	JPanel panelActividades = new JPanel();
+        panelActividades.setLayout(new GridLayout(12, 31, 2, 2));
+        
+    	int totalProgreso = 0;
+    	List<Actividad> actividades = learningPath.getActividades();
+    	long actividadesCompletadas = actividades.stream().filter(Actividad::getCompletada).count();
+    	long totalActividades = actividades.size();
+    	
+    	String titulo = JOptionPane.showInputDialog(this, "Ingrese el título del Learning Path:");
+    	LearningPath learningPath = persistenciaLearningPaths.obtenerLearningPaths().stream()
+                .filter(lp -> lp.getTitulo().equals(titulo))
+                .findFirst()
+                .orElse(null);
+    	if (learningPath != null) {
+    		List<Estudiante> estudiantes = learningPath.getEstudiantes();
+    		long totalEstudiantes = estudiantes.size();
+    		for (i = 0; i < estudiantes.size(), i++) {
+    			if (totalActividades > 0) {
+                    double porcentajeCompletado = (double) actividadesCompletadas / totalActividades * 100;
+    			} else {
+    				porcentajeCompletado = 0;
+    			}
+    			Estudiante estudiante = estudiantes.get(i);
+    			totalProgreso = totalProgreso + porcentajeCompletado;
+    		}
+    		double promedioProgreso = (double) totalProgreso / totalEstudiantes;
+    		promedios.add(promedioProgreso);
+    		LocalDate fechaActual = LocalDate.now();
+    		fechas.add(fechaActual);
+    		for (i = 0; i < promedios.size(), i++) {
+    			JPanel celda = new JPanel();
+    			int valor = promedios.get(i);
+    			celda.setBackground(getColorPorActividad(valor));
+    			panelActividades.add(celda);
+    		}
+    		
+    		frame.add(panelActividades);
+    	    frame.setVisible(true);
+    		
+    	}
+    }
+    
+    private Color getColorPorActividad(int valor) {
+        if (valor == 0) return Color.LIGHT_GRAY;
+        if (valor < 5) return new Color(173, 216, 230);
+        if (valor < 10) return new Color(100, 149, 237);
+        return new Color(0, 0, 139);
+    }
 
 }
