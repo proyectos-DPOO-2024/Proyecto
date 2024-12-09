@@ -1,5 +1,7 @@
 package uniandes.dpoo.learningpaths.learninghpaths.Actividad;
 
+import java.awt.Component;
+
 public class ActividadRevisionRecurso extends Actividad {
     private String tipoRecurso;
     
@@ -26,4 +28,10 @@ public class ActividadRevisionRecurso extends Actividad {
 		// TODO Auto-generated method stub
 		
 	}*/
+
+	@Override
+	public Component getEstudiantesCompletados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

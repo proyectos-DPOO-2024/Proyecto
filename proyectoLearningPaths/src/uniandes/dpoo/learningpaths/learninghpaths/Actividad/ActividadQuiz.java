@@ -1,5 +1,6 @@
 package uniandes.dpoo.learningpaths.learninghpaths.Actividad;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,12 @@ public class ActividadQuiz extends Actividad {
 	
 	public Actividad clonar() {
 		return new ActividadQuiz(getTitulo(), getDescripcion(), getObjetivo(), getDificultad(), getDuracion(), calificacionMinima);
+	}
+
+	@Override
+	public Component getEstudiantesCompletados() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

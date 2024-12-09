@@ -2,6 +2,7 @@ package uniandes.dpoo.learningpaths.learninghpaths.Actividad;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Component;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -177,6 +178,8 @@ public abstract class Actividad implements Serializable {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
+
+	public abstract Component getEstudiantesCompletados();
     
 
     

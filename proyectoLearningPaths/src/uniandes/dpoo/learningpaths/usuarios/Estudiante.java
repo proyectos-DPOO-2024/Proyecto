@@ -27,7 +27,7 @@ public class Estudiante extends Usuario {
 
         if (learningPath != null) {
         	String resenia = JOptionPane.showInputDialog(this, "Ingrese el la reseña:");
-        	int calificacion = JOptionPane.showInputDialog(this, "Ingrese la calificacion (de 1 a 5):");
+        	String calificacion = JOptionPane.showInputDialog(this, "Ingrese la calificacion (de 1 a 5):");
 
             if (calificacion < 1 || calificacion > 5) {
             	JOptionPane.showMessageDialog("Calificación inválida. Debe estar entre 1 y 5.");
