@@ -27,6 +27,7 @@ public class InterfazEstudiante {
 	private PersistenciaLearningPaths persistenciaLearningPaths;
 	private Usuario usuario;
 	private PersistenciaResenia persistenciaResenias;
+	private JPanel contentPane;
 	
 	public InterfazEstudiante(Estudiante estudiante, CatalogoLearningPath catalogo,
             PersistenciaLearningPaths persistenciaLearningPaths,
