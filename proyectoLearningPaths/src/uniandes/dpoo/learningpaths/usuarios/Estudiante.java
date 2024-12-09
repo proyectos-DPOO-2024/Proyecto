@@ -51,6 +51,8 @@ public class Estudiante extends Usuario {
 
         if (learningPath != null) {
             this.inscribirLearningPath(learningPath);
+            Estudiante estudiante = new estudiante(nombreUsuario, nombre, apellido, contraseña, "Estudiante");
+            learningpath.agregarEstudiante(estudiante);
             JOptionPane.showMessageDialog(this, "Learning Path inscrito exitosamente.");
         } else {
         	JOptionPane.showMessageDialog(this, "Error en los datos ingresados.");
@@ -116,8 +118,7 @@ public class Estudiante extends Usuario {
         }
     }
     
-    public void mostrarProgresoActividades() {
-        String titulo = JOptionPane.showInputDialog("Ingrese el titulo del Learning path")
+    public void mostrarProgresoActividades(String titulo) {
         LearningPath learningPath = this.getLearningPathsInscritos().stream()
             .filter(lp -> lp.getTitulo().equals(titulo))
             .findFirst()
