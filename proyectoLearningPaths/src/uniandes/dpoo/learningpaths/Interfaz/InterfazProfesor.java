@@ -289,9 +289,26 @@ public class InterfazProfesor extends JFrame {
         String tituloLP = JOptionPane.showInputDialog(this, "Ingrese el título del Learning Path:");
         String tituloActividad = JOptionPane.showInputDialog(this, "Ingrese el título de la actividad:");
 
+        // Agregar la actividad al LearningPath usando el profesor
         profesor.agregarActLearningPath(tituloLP, tituloActividad);
-        JOptionPane.showMessageDialog(this, "Actividad agregada exitosamente.");
+
+        // Obtener el LearningPath actualizado desde la persistencia
+        LearningPath learningPath = persistenciaLearningPaths.obtenerLearningPaths().stream()
+            .filter(lp -> lp.getTitulo().equalsIgnoreCase(tituloLP))
+            .findFirst()
+            .orElse(null);
+
+        if (learningPath != null) {
+            // Actualizar el LearningPath en la lista persistida
+            persistenciaLearningPaths.eliminarLearningPath(tituloLP);  // Eliminar el anterior si existe
+            persistenciaLearningPaths.guardarLearningPath(learningPath);  // Guardar el actualizado
+            JOptionPane.showMessageDialog(this, "Actividad agregada exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo encontrar el Learning Path.");
+        }
     }
+
+
 
     private void editarLearningPath() {
         String titulo = JOptionPane.showInputDialog(this, "Ingrese el título del Learning Path:");
@@ -305,12 +322,28 @@ public class InterfazProfesor extends JFrame {
             int nuevaDuracion = Integer.parseInt(duracionStr);
             double nuevoRating = Double.parseDouble(nuevoRatingStr);
 
+            // Editar el Learning Path usando el profesor
             profesor.editarLearningPath(titulo, nuevoTitulo, nuevaDescripcion, nuevaDuracion, nuevaDificultad, nuevoRating);
-            JOptionPane.showMessageDialog(this, "Learning Path editado exitosamente.");
+
+            // Obtener el LearningPath actualizado desde la persistencia
+            LearningPath learningPath = persistenciaLearningPaths.obtenerLearningPaths().stream()
+                .filter(lp -> lp.getTitulo().equalsIgnoreCase(titulo))
+                .findFirst()
+                .orElse(null);
+
+            if (learningPath != null) {
+                // Actualizar el LearningPath en la lista persistida
+                persistenciaLearningPaths.eliminarLearningPath(titulo);  // Eliminar el anterior si existe
+                persistenciaLearningPaths.guardarLearningPath(learningPath);  // Guardar el actualizado
+                JOptionPane.showMessageDialog(this, "Learning Path editado y guardado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo encontrar el Learning Path.");
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en los datos ingresados.");
         }
     }
+
 
     private void calificarActividades() {
         String usuarioEstudiante = JOptionPane.showInputDialog(this, "Ingrese el nombre del estudiante:");

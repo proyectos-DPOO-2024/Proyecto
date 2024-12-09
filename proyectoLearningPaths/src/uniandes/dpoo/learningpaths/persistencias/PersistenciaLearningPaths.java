@@ -50,6 +50,9 @@ public class PersistenciaLearningPaths {
         }
     }
     
+    public void eliminarLearningPath(String titulo) {
+        learningPaths.removeIf(lp -> lp.getTitulo().equalsIgnoreCase(titulo));
+    }
 
 
 
