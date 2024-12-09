@@ -7,11 +7,12 @@ import java.util.List;
 
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Actividad;
 import uniandes.dpoo.learningpaths.learninghpaths.Actividad.Reseña;
+import uniandes.dpoo.learningpaths.usuarios.Estudiante;
 
 public class LearningPath implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-    public static int contadorID = 0;
+    private static int contadorID = 0;
     private int learningpathID;
     private String titulo;
     private String descripcion;
@@ -20,6 +21,7 @@ public class LearningPath implements Serializable {
     private double rating;
     private List<Reseña> reseñas;
     private List<Actividad> actividades;
+    private List<Estudiante> estudiantes;
 
     public LearningPath(String titulo, String descripcion, int duracion, String dificultad, double rating) {
         this.learningpathID = contadorID++;
@@ -30,6 +32,7 @@ public class LearningPath implements Serializable {
         this.rating = rating;
         this.reseñas = new ArrayList<>();
         this.actividades = new ArrayList<Actividad>();
+        this.estudiantes = new ArrayList<Estudiante>();
     }
 
     public String getTitulo() {
@@ -87,6 +90,13 @@ public class LearningPath implements Serializable {
     public List<Reseña> getResenias() {
         return reseñas;
     }
+    public List<Estudiante> getEstudiantes() {
+    	return estudiantes;
+    }
+    
+    public void agregarEstudiante(Estudiante estudiante) {
+    	estudiantes.add(estudiante);
+    }
 
     public void mostrarResenias() {
         if (reseñas.isEmpty()) {
@@ -119,18 +129,6 @@ public class LearningPath implements Serializable {
             }
         }
     }
-    
-    @Override
-    public String toString() {
-        return "LearningPath{" +
-               "titulo='" + titulo + '\'' +
-               ", descripcion='" + descripcion + '\'' +
-               ", nivelDificultad=" + nivelDificultad +
-               ", duracion=" + duracion +
-               ", rating=" + rating +
-               '}';
-    }
-
 }
 
 
